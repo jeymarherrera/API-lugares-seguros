@@ -1,19 +1,30 @@
 {
-  "name": "lugares-seguros",
+  "name": "lugares-seguros-team2",
   "version": "1.0.0",
-  "description": "proyecto de practica lugares seguros de hackwomen.dev",
+  "description": "proyecto de practica lugares seguros realizado por el equipo 2",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js"
   },
-  "author": "Jeymar Herrera",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackademymx/Hackwomen-Team-2-backend.git"
+  },
+  "author": "Jeymar Herrera, Lucero Luciano",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hackademymx/Hackwomen-Team-2-backend/issues"
+  },
+  "homepage": "https://github.com/hackademymx/Hackwomen-Team-2-backend#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "pg": "^8.9.0",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.6.0"
   }
 }

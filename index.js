@@ -1,9 +1,9 @@
+//imports
 const {PORT} = require("./config/config");
 const {db} = require("./config/database");
-//inicializar nuestro servidor
-const express = require("express");
-const server = express();
-
+const {server} = require("./server/index");
+//para version mas reciente
+//const server = require("./server/index");
 
 db.authenticate().then(()=> {
     console.log("Database connected");
@@ -12,4 +12,4 @@ db.authenticate().then(()=> {
     });
 }).catch(err => {
     console.error('Unable to connect to the database:', err);
-  });
+});

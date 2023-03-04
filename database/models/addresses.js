@@ -3,12 +3,12 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class addresses extends Model {
+  class address extends Model {
     static associate(models) {
-      addresses.hasOne(models.places);
+      address.hasOne(models.places);
     }
   }
-  addresses.init({
+  address.init({
     city: DataTypes.STRING,
     state: DataTypes.INTEGER,
     street: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     postal_code: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'addresses',
+    modelName: 'address',
   });
-  return addresses;
+  return address;
 };

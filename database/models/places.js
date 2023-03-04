@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class places extends Model {
     static associate(models) {
-      places.belongsTo(models.addresses);
+      places.belongsTo(models.address);
       places.belongsTo(models.users);
       places.hasMany(models.comments);
       places.hasMany(models.likes);

@@ -1,11 +1,15 @@
 //imports
-const {addPlace} = require("../controllers/places");
+const {addPlace, getPlace, updatePlace} = require("../controllers/places");
+
 const {Router} = require("express");
 
 //instancia de routers
 const router = Router();
 
 //lamada a los endpoint
-router.post("/place", addPlace);
+router.route("/place").post(addPlace).get(getPlace);
+//router.post("/place", addPlace).get;
+
+router.put("/place/:placeId", updatePlace);
 
 module.exports = {router};

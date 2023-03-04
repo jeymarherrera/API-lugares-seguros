@@ -99,5 +99,35 @@ const updatePlace = async(req, res) => {
         return res.status(500).send("Lo sentimos ha ocurrido un error");
     };
 };
+
+const deletePlace = async(req, res) => {
+    try {
+        // 1. Que lugar es el que quiero actualizar?
+        //console.log(JSON.stringify(req.params));
+        const { placeId } = req.params; // se obtiene el id del place
+        
+        // 2. Verificar que el lugar exista
+        const place = await models.places.findOne({
+            where: {
+                id: placeId,
+                statusDelete: false,
+            },
+        });
+        
+        //si no encuentra el place
+        if(!place) return res.status(404).send("El lugar no se encuentra");   
+        
+        // 3. Actualizar datos        
+        await place.update({
+           statusDelete: true,
+        });
+
+        // 4. Devolver una respuesta
+        return res.status(200).send("Se ha eliminado exitosamente.");
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Lo sentimos ha ocurrido un error");
+    };
+};
 //exportar funcion
-module.exports = {addPlace , getPlace, updatePlace};
+module.exports = {addPlace , getPlace, updatePlace, deletePlace};

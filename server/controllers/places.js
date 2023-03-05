@@ -31,16 +31,25 @@ const getPlace = async(req, res) => {
     try {
         //consultar todos
         const places = await models.places.findAll({
+            attributes:{exclude:["updatedAt"]},
             //filtro
             where:{
-                name:"Restaurante El Dorado",
+                statusDelete: false,
+                //name:"Restaurante El Dorado",
             },
             //join
-            include: {
+            include: [
+            {
                 model: models.address, // este es el modelo que quiero unir
                 //model: models.users,
                 //as: 'Direccion',
-            },
+                attributes:{exclude:['createdAt', 'updatedAt']},
+            }, 
+            {
+                model: models.likes,
+                //taer attributos
+                attributes:['id', 'isLike', 'userId'],
+            }],
         });
         return res.status(200).send(places);
     } catch (error) {

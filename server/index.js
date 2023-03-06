@@ -16,7 +16,8 @@ server.get("/saludar", (req,res)=>{
 
 server.use(express.json()); //solicitudes que traen algon en el post
 server.use(router);
-
+//ver imagen en la ruta, haciendo carpeta public static
+server.use('/public', express.static(__dirname + '/public'));
 
 //exports
 module.exports = {server};

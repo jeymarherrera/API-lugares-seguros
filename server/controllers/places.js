@@ -1,10 +1,14 @@
 const { json } = require("sequelize");
 const models = require("../../database/models");
-
+const {fileUpload} = require("../utils/uploadFiles");
 
 const addPlace = async(req, res) => {
     try {
         const{body} = req;
+
+        let image = fileUpload(body.image, "/public");
+        image = `http://localhost:5050${image}`;
+        
         //agregar
         const address = await models.address.create({
             state:body.state,
@@ -18,6 +22,7 @@ const addPlace = async(req, res) => {
             name:body.name,
             description:body.description,
             addressId:address.id,
+            image,
         }); //SQL -> INSERT TO
         return res.status(201).send(place);
     } catch (error) {

@@ -1,8 +1,12 @@
 //imports
-const {addPlace, getPlace, updatePlace, deletePlace} = require("../controllers/places");
+const { addPlace, getPlace, updatePlace, deletePlace } = require("../controllers/places");
 const { addCommentToPlace, getCommentsByPlace, deleteComment } = require("../controllers/comments");
 const { addLikeDislike } = require("../controllers/likes");
+const { registry } = require("../controllers/users");
+const { login } = require("../controllers/login");
 const {Router} = require("express");
+
+
 //instancia de routers
 const router = Router();
 
@@ -20,4 +24,10 @@ router.delete("/comments/:commentId",deleteComment);
 
 //ruta agregar, quitar like
 router.post("/likes", addLikeDislike);
+
+//registro de usuario
+router.post("/registry", registry);
+
+//login de usuario
+router.post("/login", login);
 module.exports = {router};

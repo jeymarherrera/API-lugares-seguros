@@ -2,7 +2,7 @@ const models = require("../../database/models");
 
 const addCommentToPlace = async(req,res) =>{
     try {
-        const {body} = req;
+        const {body, userId} = req;
         //comentario
         const existPlace = await models.places.findOne({
             where:{
@@ -14,6 +14,7 @@ const addCommentToPlace = async(req,res) =>{
         if(!existPlace) return res.status(404).send("El lugar no existe")
         const comment = await models.comments.create({
             placeId: body.placeId,
+            userId,
             comment: body.comment,
         });
         return res.status(201).send(comment);

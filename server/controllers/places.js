@@ -4,8 +4,8 @@ const {fileUpload} = require("../utils/uploadFiles");
 
 const addPlace = async(req, res) => {
     try {
-        const{body} = req;
-
+        const{body, userId} = req;
+      
         let image = fileUpload(body.image, "/public");
         image = `http://localhost:5050${image}`;
         
@@ -23,6 +23,7 @@ const addPlace = async(req, res) => {
             description:body.description,
             addressId:address.id,
             image,
+            userId: userId,
         }); //SQL -> INSERT TO
         return res.status(201).send(place);
     } catch (error) {

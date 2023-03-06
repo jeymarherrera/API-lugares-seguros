@@ -2,7 +2,7 @@ const models = require("../../database/models");
 
 const addLikeDislike = async(req,res) =>{
     try {
-        const {body} = req;
+        const {body, userId} = req;
 
         const existPlace = await models.places.findOne({
             where:{
@@ -16,6 +16,7 @@ const addLikeDislike = async(req,res) =>{
         const addLikeDislike = await models.likes.create({
             isLike: body.isLike,
             placeId: body.placeId,
+            userId,
         });
 
         return res.status(201).send(addLikeDislike);
